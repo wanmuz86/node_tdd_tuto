@@ -13,7 +13,7 @@ var should = chai.should();
 chai.use(chaiHttp);
 //Our parent block
 describe('Books', function(){
-    beforeEach((done) => { //Before each test we empty the database
+    beforeEach(function(done) { //Before each test we empty the database
         Book.remove({}, function(err){ 
            done();         
         });     
