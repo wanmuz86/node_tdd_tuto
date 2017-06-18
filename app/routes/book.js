@@ -7,7 +7,7 @@ var Book = require('../models/book');
 function getBooks(req, res) {
     //Query the DB and if no errors, send all the books
     let query = Book.find({});
-    query.exec((err, books) => {
+    query.exec(function(err, books) {
         if(err) res.send(err);
         //If no errors, send them back to the client
         res.json(books);
@@ -21,7 +21,7 @@ function postBook(req, res) {
     //Creates a new book
     var newBook = new Book(req.body);
     //Save it into the DB.
-    newBook.save((err,book) => {
+    newBook.save(function(err,book) {
         if(err) {
             res.send(err);
         }
@@ -35,7 +35,7 @@ function postBook(req, res) {
  * GET /book/:id route to retrieve a book given its id.
  */
 function getBook(req, res) {
-    Book.findById(req.params.id, (err, book) => {
+    Book.findById(req.params.id, function(err, book) {
         if(err) res.send(err);
         //If no errors, send it back to the client
         res.json(book);

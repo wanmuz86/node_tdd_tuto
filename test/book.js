@@ -12,20 +12,20 @@ var should = chai.should();
 
 chai.use(chaiHttp);
 //Our parent block
-describe('Books', () => {
+describe('Books', function(){
     beforeEach((done) => { //Before each test we empty the database
-        Book.remove({}, (err) => { 
+        Book.remove({}, function(err){ 
            done();         
         });     
     });
 /*
   * Test the /GET route
   */
-  describe('/GET book', () => {
-      it('it should GET all the books', (done) => {
+  describe('/GET book', function(){
+      it('it should GET all the books', function(done){
         chai.request(server)
             .get('/book')
-            .end((err, res) => {
+            .end(function(err, res){
                 res.should.have.status(200);
                 res.body.should.be.a('array');
                 res.body.length.should.be.eql(0);
@@ -37,8 +37,8 @@ describe('Books', () => {
    /*
   * Test the /POST route
   */
-  describe('/POST book', () => {
-      it('it should not POST a book without pages field', (done) => {
+  describe('/POST book', function() {
+      it('it should not POST a book without pages field', function(done){
         let book = {
             title: "The Lord of the Rings",
             author: "J.R.R. Tolkien",
@@ -57,7 +57,7 @@ describe('Books', () => {
             });
       });
 
-      it('it should POST a book ', (done) => {
+      it('it should POST a book ', function(done){
         let book = {
             title: "The Lord of the Rings",
             author: "J.R.R. Tolkien",
@@ -67,7 +67,7 @@ describe('Books', () => {
         chai.request(server)
             .post('/book')
             .send(book)
-            .end((err, res) => {
+            .end(function(err, res){
                 res.should.have.status(200);
                 res.body.should.be.a('object');
                 res.body.should.have.property('message').eql('Book successfully added!');

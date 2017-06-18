@@ -16,7 +16,7 @@ var BookSchema = new Schema(
   }
 );
 
-BookSchema.pre('save', next => {
+BookSchema.pre('save', function(next) {
   now = new Date();
   if(!this.createdAt) {
     this.createdAt = now;
