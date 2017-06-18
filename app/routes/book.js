@@ -25,7 +25,7 @@ function postBook(req, res) {
         if(err) {
             res.send(err);
         }
-        else { //If no errors, send it back to the client
+        else { 
             res.json({message: "Book successfully added!", book });
         }
     });
