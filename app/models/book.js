@@ -1,8 +1,8 @@
-let mongoose = require('mongoose');
-let Schema = mongoose.Schema;
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
 //book schema definition
-let BookSchema = new Schema(
+var BookSchema = new Schema(
   {
     title: { type: String, required: true },
     author: { type: String, required: true },

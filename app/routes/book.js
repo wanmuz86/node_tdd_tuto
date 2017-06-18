@@ -1,5 +1,5 @@
-let mongoose = require('mongoose');
-let Book = require('../models/book');
+var mongoose = require('mongoose');
+var Book = require('../models/book');
 
 /*
  * GET /book route to retrieve all the books.
