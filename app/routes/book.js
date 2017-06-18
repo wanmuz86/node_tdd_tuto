@@ -6,7 +6,7 @@ var Book = require('../models/book');
  */
 function getBooks(req, res) {
     //Query the DB and if no errors, send all the books
-    let query = Book.find({});
+    var query = Book.find({});
     query.exec(function(err, books) {
         if(err) res.send(err);
         //If no errors, send them back to the client
@@ -46,7 +46,7 @@ function getBook(req, res) {
  * DELETE /book/:id to delete a book given its id.
  */
 function deleteBook(req, res) {
-    Book.remove({_id : req.params.id}, (err, result) => {
+    Book.remove({_id : req.params.id}, function(err, result){
         res.json({ message: "Book successfully deleted!", result });
     });
 }
@@ -55,9 +55,9 @@ function deleteBook(req, res) {
  * PUT /book/:id to updatea a book given its id
  */
 function updateBook(req, res) {
-    Book.findById({_id: req.params.id}, (err, book) => {
+    Book.findById({_id: req.params.id}, function(err, book) {
         if(err) res.send(err);
-        Object.assign(book, req.body).save((err, book) => {
+        Object.assign(book, req.body).save(function(err, book) {
             if(err) res.send(err);
             res.json({ message: 'Book updated!', book });
         }); 

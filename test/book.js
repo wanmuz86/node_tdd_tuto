@@ -39,7 +39,7 @@ describe('Books', function(){
   */
   describe('/POST book', function() {
       it('it should not POST a book without pages field', function(done){
-        let book = {
+        var book = {
             title: "The Lord of the Rings",
             author: "J.R.R. Tolkien",
             year: 1954
@@ -47,7 +47,7 @@ describe('Books', function(){
         chai.request(server)
             .post('/book')
             .send(book)
-            .end((err, res) => {
+            .end(function(err, res) {
                 res.should.have.status(200);
                 res.body.should.be.a('object');
                 res.body.should.have.property('errors');
@@ -58,7 +58,7 @@ describe('Books', function(){
       });
 
       it('it should POST a book ', function(done){
-        let book = {
+        var book = {
             title: "The Lord of the Rings",
             author: "J.R.R. Tolkien",
             year: 1954,
