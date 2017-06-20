@@ -82,7 +82,7 @@ describe('Books', function(){
 
    describe('/GET/:id book', function(){
       it('it should GET a book by the given id', function(done){
-        let book = new Book({ title: "The Lord of the Rings", author: "J.R.R. Tolkien", year: 1954, pages: 1170 });
+        var book = new Book({ title: "The Lord of the Rings", author: "J.R.R. Tolkien", year: 1954, pages: 1170 });
         book.save(function(err, book){
             chai.request(server)
             .get('/book/' + book.id)
@@ -103,7 +103,7 @@ describe('Books', function(){
       
 describe('/PUT/:id book', function()  {
       it('it should UPDATE a book given the id', function(done) {
-        let book = new Book({title: "The Chronicles of Narnia", author: "C.S. Lewis", year: 1948, pages: 778})
+        var book = new Book({title: "The Chronicles of Narnia", author: "C.S. Lewis", year: 1948, pages: 778})
         book.save(function(err, book) {
                 chai.request(server)
                 .put('/book/' + book.id)
@@ -120,7 +120,7 @@ describe('/PUT/:id book', function()  {
   });
 describe('/DELETE/:id book', function() {
       it('it should DELETE a book given the id', function(done) {
-        let book = new Book({title: "The Chronicles of Narnia", author: "C.S. Lewis", year: 1948, pages: 778})
+        var book = new Book({title: "The Chronicles of Narnia", author: "C.S. Lewis", year: 1948, pages: 778})
         book.save(function(err, book){
                 chai.request(server)
                 .delete('/book/' + book.id)
