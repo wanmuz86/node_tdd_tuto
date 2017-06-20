@@ -47,7 +47,7 @@ function getBook(req, res) {
  */
 function deleteBook(req, res) {
     Book.remove({_id : req.params.id}, function(err, result){
-        res.json({ message: "Book successfully deleted!", result });
+        
     });
 }
 
@@ -59,7 +59,7 @@ function updateBook(req, res) {
         if(err) res.send(err);
         Object.assign(book, req.body).save(function(err, book) {
             if(err) res.send(err);
-            res.json({ message: 'Book updated!', book });
+            
         }); 
     });
 }
