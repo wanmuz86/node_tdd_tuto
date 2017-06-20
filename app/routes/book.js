@@ -26,7 +26,7 @@ exports.postBook = function(req, res) {
             res.send(err);
         }
         else { 
-            res.json({message: "Book successfully added!", book});
+  
         }
     });
 }
@@ -47,7 +47,7 @@ exports.getBook = function(req, res) {
  */
 exports.deleteBook = function(req, res) {
     Book.remove({_id : req.params.id}, function(err, result){
-        res.json({ message: "Book successfully deleted!", result });
+
     });
 }
 
@@ -59,7 +59,7 @@ exports.updateBook = function(req, res) {
         if(err) res.send(err);
         Object.assign(book, req.body).save(function(err, book) {
             if(err) res.send(err);
-            res.json({ message: 'Book updated!', book });
+
         }); 
     });
 }
