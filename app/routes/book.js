@@ -4,7 +4,7 @@ var Book = require('../models/book');
 /*
  * GET /book route to retrieve all the books.
  */
-function getBooks(req, res) {
+exports.getBooks =  function(req, res) {
     //Query the DB and if no errors, send all the books
     var query = Book.find({});
     query.exec(function(err, books) {
@@ -17,7 +17,7 @@ function getBooks(req, res) {
 /*
  * POST /book to save a new book.
  */
-function postBook(req, res) {
+exports.postBook = function(req, res) {
     //Creates a new book
     var newBook = new Book(req.body);
     //Save it into the DB.
@@ -26,7 +26,7 @@ function postBook(req, res) {
             res.send(err);
         }
         else { 
-            
+            res.json({message: "Book successfully added!", book});
         }
     });
 }
@@ -34,7 +34,7 @@ function postBook(req, res) {
 /*
  * GET /book/:id route to retrieve a book given its id.
  */
-function getBook(req, res) {
+exports.getBook = function(req, res) {
     Book.findById(req.params.id, function(err, book) {
         if(err) res.send(err);
         //If no errors, send it back to the client
@@ -45,24 +45,21 @@ function getBook(req, res) {
 /*
  * DELETE /book/:id to delete a book given its id.
  */
-function deleteBook(req, res) {
+exports.deleteBook = function(req, res) {
     Book.remove({_id : req.params.id}, function(err, result){
-        
+        res.json({ message: "Book successfully deleted!", result });
     });
 }
 
 /*
  * PUT /book/:id to updatea a book given its id
  */
-function updateBook(req, res) {
+exports.updateBook = function(req, res) {
     Book.findById({_id: req.params.id}, function(err, book) {
         if(err) res.send(err);
         Object.assign(book, req.body).save(function(err, book) {
             if(err) res.send(err);
-            
+            res.json({ message: 'Book updated!', book });
         }); 
     });
 }
-
-//export all the functions
-module.exports = { getBooks, postBook, getBook, deleteBook, updateBook };
